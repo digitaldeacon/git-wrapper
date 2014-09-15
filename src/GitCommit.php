@@ -7,8 +7,6 @@
  * @copyright (c) 2013, Brent Goldthwaite
  */
 
-namespace CarrLabs\GitWrapper;
-
 class GitCommit
 {
 	/**
