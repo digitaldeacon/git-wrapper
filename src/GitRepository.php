@@ -219,7 +219,7 @@ class GitRepository
 	 * @param boolean $amend whether the commit
 	 * @return array|false an array of committed files, file => status, or false if the commit failed
 	 */
-	public function commit($message = NULL, $addFiles = FALSE, $amend = FALSE)
+	public function commit($message = NULL, $addFiles = FALSE, $amend = FALSE, $author = FALSE)
 	{
 		$command = 'commit ';
 		if($addFiles)
@@ -228,11 +228,15 @@ class GitRepository
 		}
 		if($amend)
 		{
-			$command .= '--amend';
+			$command .= '--amend ';
 		}
 		if($message)
 		{
-			$command .= '-m "' . $message . '"';
+			$command .= ' -m "' . $message . '" ';
+		}
+		if($author)
+		{
+			$command .= ' --author="'.$author.'" ';
 		}
 
 		$result = $this->run($command . ' --porcelain');
